@@ -14,11 +14,9 @@ import {{.}};
 @RequestMapping("{{{metadata.API_PREFIX}}}"){{/metadata.API_PREFIX}}
 @AllArgsConstructor
 public class {{controllerClassName}} {
-
      {{#resources}}
         {{#actions}}
             {{> resource}}
         {{/actions}}
     {{/resources}}
-
 }
