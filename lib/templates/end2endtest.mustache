@@ -1,0 +1,26 @@
+package {{ package }}.controller;
+
+import {{ package }}.dto.*;
+import io.restassured.http.Header;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.http.HttpStatus;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import static com.ey.radisson.helpers.RestAssuredHelpers.givenJsonApi;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+public class {{controllerClassName}}IT {
+
+    @LocalServerPort
+    private int port;
+    {{#resources}}
+        {{#actions}}
+            {{> resourceend2end }}
+        {{/actions}}
+    {{/resources}}
+}

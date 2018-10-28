@@ -1,0 +1,13 @@
+ 
+    @Test
+    public void should_{{#fn.snakeCase}}{{{ name }}}{{/fn.snakeCase}}() {
+        givenJsonApi(port)
+                .header(new Header("Accept-Language", "en"))
+                .when()
+                .get("{{{ attributes.uriTemplate }}}")
+                .then()
+                .statusCode(HttpStatus.OK.value())
+                .header("Content-Language", "en")
+                .header("Vary", "Accept-Language")
+                .body(matchesJsonSchemaInClasspath("schemas/{{#fn.camelCase}}{{{ name }}}{{/fn.camelCase}}.json"));
+    }
