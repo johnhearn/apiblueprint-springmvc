@@ -2,6 +2,7 @@ package {{ package }}.controller;
 
 import {{ package }}.model.*;
 import {{ package }}.service.{{apiSpecClassName}};
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 {{#extraImports}}
@@ -11,15 +12,10 @@ import {{.}};
 {{> header }}
 @RestController{{#metadata.API_PREFIX}}
 @RequestMapping("{{{metadata.API_PREFIX}}}"){{/metadata.API_PREFIX}}
+@AllArgsConstructor
 public class {{controllerClassName}} {
 
-    private {{apiSpecClassName}} {{apiSpecName}};
-
-    @Autowired
-    public {{controllerClassName}}({{apiSpecClassName}} {{apiSpecName}}) {
-        this.{{apiSpecName}} = {{apiSpecName}};
-    }
-    {{#resources}}
+     {{#resources}}
         {{#actions}}
             {{> resource}}
         {{/actions}}
